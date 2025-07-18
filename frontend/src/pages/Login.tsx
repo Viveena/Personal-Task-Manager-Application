@@ -2,6 +2,7 @@ import React, { useState, useContext, type JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AuthContext from '../context/AuthContext';
+import '../css/AuthForm.css'
 
 const Login = (): JSX.Element => {
   const [email, setEmail] = useState('');

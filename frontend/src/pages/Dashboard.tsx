@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, type JSX } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import AuthContext from '../context/AuthContext';
+import '../css/DashBoard.css';
 
 interface Task {
   _id: string;

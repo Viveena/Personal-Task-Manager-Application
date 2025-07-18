@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, type JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AuthContext from '../context/AuthContext';
+import '../css/AuthForm.css'
 
 const Register = (): JSX.Element => {
   const [username, setUsername] = useState('');
