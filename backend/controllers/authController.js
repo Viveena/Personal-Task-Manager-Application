@@ -1,6 +1,5 @@
-const User = require("../models/User");
-
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -8,7 +7,7 @@ const generateToken = (id) => {
   });
 };
 
-exports.registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
@@ -39,7 +38,7 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-exports.loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -63,13 +62,12 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-exports.logoutUser = (req, res) => {
+export const logoutUser = (req, res) => {
   res.cookie("token", "", { httpOnly: true, expires: new Date(0) });
-
   res.status(200).json({ message: "Logged out successfully" });
 };
 
-exports.getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-password");
 

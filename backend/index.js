@@ -1,28 +1,49 @@
-import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import userRoutes from "./routes/userRoutes.js"; // example route
-//import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
-dotenv.config();
+import express, { json } from "express";
+
+import { connect } from "mongoose";
+
+import { config } from "dotenv";
+
+import cookieParser from "cookie-parser";
+
+//import helmet from "helmet";
+
+import authRoutes from "./routes/authRoutes.js";
+
+import taskRoutes from "./routes/taskRoutes.js";
+
+import "./middleware/authMiddleware.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+
+config();
 
 const app = express();
 
-// Connect DB
-connectDB();
+//app.use(helmet());
 
-// Middleware
-//app.use(express.json()); // for parsing JSON
+app.use(json());
 
-// Routes
-app.use("/api/users", userRoutes);
+app.use(cookieParser());
 
-// Error handler middlewares (if made)
+connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected!"))
 
-//app.use(notFound);
-//app.use(errorHandler);
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-// Start server
+app.use("/api/auth", authRoutes);
+
+app.use("/api/tasks", taskRoutes);
+
+app.get("/", (req, res) => {
+  res.send("MERN Task Manager API is running!");
+});
+
+app.use(notFound);
+
+app.use(errorHandler);
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
