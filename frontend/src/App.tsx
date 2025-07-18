@@ -7,7 +7,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
-import './css/App.css';
+import './App.css';
 
 
 function App(): JSX.Element {

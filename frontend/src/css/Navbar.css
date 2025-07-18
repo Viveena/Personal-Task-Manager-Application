@@ -1,26 +1,46 @@
 /* components/Navbar.css */
-.navbar {
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #007bff;
-  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  padding: 1.2rem 2.5rem;
   color: #fff;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
-
-.navbar h2 {
+nav h1 {
   margin: 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
-
-.navbar button {
-  background-color: #dc3545;
-  color: white;
+nav div {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+nav button {
+  background: #dc3545;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background 0.2s;
 }
-
-.navbar button:hover {
-  background-color: #c82333;
+nav button:hover {
+  background: #b91c1c;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+nav a:hover {
+  background: rgba(0,0,0,0.08);
 }
