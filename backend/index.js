@@ -38,6 +38,15 @@ app.get("/", (req, res) => {
   res.send("MERN Task Manager API is running!");
 });
 
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ 
+    status: "OK", 
+    message: "Backend is running",
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.use(notFound);
 
 app.use(errorHandler);

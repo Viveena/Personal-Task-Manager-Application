@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
+import ConnectionStatus from './components/ConnectionStatus';
+import Welcome from './pages/Welcome';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -14,7 +16,19 @@ function App(): JSX.Element {
   return (
     <Router>
       <Navbar />
-      <ToastContainer />
+      <ConnectionStatus />
+      <ToastContainer 
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="container">
         <Routes>
           <Route path="/register" element={<Register />} />
@@ -22,7 +36,7 @@ function App(): JSX.Element {
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route index element={<Dashboard />} />
           </Route>
-          <Route path="/" element={<h1>Welcome to Task Manager!</h1>} />
+          <Route path="/" element={<Welcome />} />
         </Routes>
       </div>
     </Router>
