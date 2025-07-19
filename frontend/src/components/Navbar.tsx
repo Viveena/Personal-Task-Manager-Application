@@ -9,18 +9,22 @@ const Navbar = (): JSX.Element => {
   return (
     <nav>
       <h1>Task Manager</h1>
-      <div>
+      <div className="nav-content">
         {user ? (
-          <>
-            <span>Welcome, {user.username}</span>
-            <button onClick={logout}>Logout</button>
-            <Link to="/dashboard">Dashboard</Link>
-          </>
+          <div className="nav-menu authenticated">
+            <div className="user-info">
+              <span>Welcome, {user.username}</span>
+            </div>
+            <div className="nav-links">
+              <Link to="/dashboard">Dashboard</Link>
+              <button onClick={logout}>Logout</button>
+            </div>
+          </div>
         ) : (
-          <>
+          <div className="nav-links">
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
-          </>
+          </div>
         )}
       </div>
     </nav>

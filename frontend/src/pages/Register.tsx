@@ -26,56 +26,81 @@ const Register = (): JSX.Element => {
   };
 
   return (
-    <div className="auth-form">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Username:</label>
-          <input 
-            type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            required 
-            disabled={loading}
-            placeholder="Choose a username"
-          />
+    <div className="auth-container">
+      <div className="auth-visual">
+        <h1>Join Task Manager</h1>
+        <p>
+          Create your account and start organizing your tasks like never before. 
+          Join thousands of users who trust us with their productivity.
+        </p>
+        <div className="features">
+          <div className="feature">
+            <span className="feature-icon">🚀</span>
+            <span>Get started in seconds</span>
+          </div>
+          <div className="feature">
+            <span className="feature-icon">💼</span>
+            <span>Professional task management</span>
+          </div>
+          <div className="feature">
+            <span className="feature-icon">🎯</span>
+            <span>Achieve your goals faster</span>
+          </div>
         </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-            disabled={loading}
-            placeholder="Enter your email"
-          />
+      </div>
+      <div className="auth-form-container">
+        <div className="auth-form">
+          <h2>Create Account</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Username</label>
+              <input 
+                type="text" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                required 
+                disabled={loading}
+                placeholder="Choose a username"
+              />
+            </div>
+            <div className="form-group">
+              <label>Email Address</label>
+              <input 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                required 
+                disabled={loading}
+                placeholder="Enter your email"
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input 
+                type="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                required 
+                disabled={loading}
+                placeholder="Create a password"
+              />
+            </div>
+            <button type="submit" disabled={loading}>
+              {loading ? (
+                <>
+                  <span className="loading-spinner"></span>
+                  Creating account...
+                </>
+              ) : (
+                'Create Account'
+              )}
+            </button>
+          </form>
+          <div className="form-footer">
+            <p>Already have an account?</p>
+            <a href="/login">Sign in here</a>
+          </div>
         </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-            disabled={loading}
-            placeholder="Create a password"
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? (
-            <>
-              <span className="loading-spinner"></span>
-              Creating account...
-            </>
-          ) : (
-            'Create Account'
-          )}
-        </button>
-      </form>
-      <div className="form-footer">
-        <p>Already have an account?</p>
-        <a href="/login">Sign in here</a>
       </div>
     </div>
   );

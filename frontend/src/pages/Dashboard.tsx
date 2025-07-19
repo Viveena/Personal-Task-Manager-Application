@@ -87,81 +87,104 @@ const Dashboard = (): JSX.Element => {
   const totalTasks = tasks.length;
 
   return (
-    <div className="dashboard">
-      <h2>Welcome, {user?.username || 'Guest'}!</h2>
-      <h3>Manage your tasks efficiently</h3>
-      
-      <div className="task-form">
-        <h4>Create New Task</h4>
-        <form onSubmit={handleCreateTask}>
-          <div className="task-form-row">
-            <input
-              type="text"
-              placeholder="Task title (required)"
-              value={newTaskTitle}
-              onChange={(e) => setNewTaskTitle(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Description (optional)"
-              value={newTaskDescription}
-              onChange={(e) => setNewTaskDescription(e.target.value)}
-            />
-            <button type="submit">
-              Add Task
-            </button>
+    <div className="dashboard-container">
+      <div className="dashboard-sidebar">
+        <h3>Overview</h3>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <span className="stat-number">{totalTasks}</span>
+            <span className="stat-label">Total Tasks</span>
           </div>
-        </form>
-      </div>
-
-      <div className="tasks-header">
-        <h3>Your Tasks</h3>
-        <div className="tasks-stats">
-          <span>Total: {totalTasks}</span>
-          <span>Completed: {completedTasks}</span>
-          <span>Remaining: {totalTasks - completedTasks}</span>
+          <div className="stat-card">
+            <span className="stat-number">{completedTasks}</span>
+            <span className="stat-label">Completed</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-number">{totalTasks - completedTasks}</span>
+            <span className="stat-label">Remaining</span>
+          </div>
         </div>
       </div>
 
-      {loading ? (
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <div className="loading-spinner" style={{ width: '40px', height: '40px' }}></div>
-          <p>Loading tasks...</p>
+      <div className="dashboard-main">
+        <div className="dashboard-header">
+          <h2>Welcome back, {user?.username || 'Guest'}!</h2>
+          <p>Manage your tasks efficiently and stay productive</p>
         </div>
-      ) : tasks.length === 0 ? (
-        <div className="empty-state">
-          <h4>No tasks yet!</h4>
-          <p>Create your first task above to get started with organizing your work.</p>
+
+        <div className="task-form">
+          <h4>Create New Task</h4>
+          <form onSubmit={handleCreateTask}>
+            <div className="task-form-grid">
+              <div className="form-field">
+                <label>Task Title</label>
+                <input
+                  type="text"
+                  placeholder="Enter task title"
+                  value={newTaskTitle}
+                  onChange={(e) => setNewTaskTitle(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <label>Description (Optional)</label>
+                <input
+                  type="text"
+                  placeholder="Add a description"
+                  value={newTaskDescription}
+                  onChange={(e) => setNewTaskDescription(e.target.value)}
+                />
+              </div>
+              <button type="submit">
+                Add Task
+              </button>
+            </div>
+          </form>
         </div>
-      ) : (
-        <ul className="task-list">
-          {tasks.map((task) => (
-            <li key={task._id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-              <div className="task-content">
-                <div className="task-title">{task.title}</div>
-                {task.description && (
-                  <div className="task-description">{task.description}</div>
-                )}
-              </div>
-              <div className="task-actions">
-                <button 
-                  className={task.completed ? 'incomplete-btn' : 'complete-btn'}
-                  onClick={() => handleUpdateTask(task._id, !task.completed)}
-                >
-                  {task.completed ? 'Mark Incomplete' : 'Mark Complete'}
-                </button>
-                <button 
-                  className="delete-btn"
-                  onClick={() => handleDeleteTask(task._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+
+        <div className="tasks-section">
+          <h3>Your Tasks</h3>
+          
+          {loading ? (
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+              <p>Loading tasks...</p>
+            </div>
+          ) : tasks.length === 0 ? (
+            <div className="empty-state">
+              <h4>No tasks yet!</h4>
+              <p>Create your first task above to get started with organizing your work.</p>
+            </div>
+          ) : (
+            <ul className="task-list">
+              {tasks.map((task) => (
+                <li key={task._id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+                  <div className="task-content">
+                    <div className="task-title">{task.title}</div>
+                    {task.description && (
+                      <div className="task-description">{task.description}</div>
+                    )}
+                  </div>
+                  <div className="task-actions">
+                    <button 
+                      className={task.completed ? 'incomplete-btn' : 'complete-btn'}
+                      onClick={() => handleUpdateTask(task._id, !task.completed)}
+                    >
+                      {task.completed ? 'Mark Incomplete' : 'Mark Complete'}
+                    </button>
+                    <button 
+                      className="delete-btn"
+                      onClick={() => handleDeleteTask(task._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
