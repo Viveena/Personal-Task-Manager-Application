@@ -2,6 +2,9 @@
 
 A full-stack Task Manager application built with the MERN stack (MongoDB, Express, React, Node.js). Users can register, log in, and manage their personal tasks with a modern, responsive UI.
 
+<img width="1200" height="840" alt="Vite-React-TS-07-19-2025_05_44_AM" src="https://github.com/user-attachments/assets/c48af11b-edec-4e4e-bea5-75ea821509de" />
+
+
 ## Features
 
 - User registration and authentication (JWT + HTTP-only cookies)
