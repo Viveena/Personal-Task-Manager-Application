@@ -109,23 +109,30 @@ npm run dev
 
 ```
 mern-task-manager/
-  backend/
-    controllers/
-    middleware/
-    models/
-    routes/
-    config/
-    .env
-    index.js
-    package.json
-  frontend/
-    src/
-      components/
-      context/
-      css/
-      pages/
-      App.tsx
-      main.tsx
-    package.json
-    vite.config.ts
+├── backend/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── .env
+│   ├── app.js
+│   ├── server.js
+│   └── package.json
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── App.tsx
+│   │   ├── index.tsx
+│   │   └── vite.config.ts
+│   ├── .env
+│   ├── package.json
+│   └── tsconfig.json
+├── .gitignore
+└── README.md
+
 ```
