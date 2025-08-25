@@ -4,7 +4,7 @@ Built this fully functional Personal task manager application within a very tigh
 
 <img width="1200" height="840" alt="Vite-React-TS-07-19-2025_05_44_AM" src="https://github.com/user-attachments/assets/c48af11b-edec-4e4e-bea5-75ea821509de" />
 
-live site- https://personal-task-manager-dtaj.onrender.com 
+live site- https://personal-task-manager-dtaj.onrender.com (still in process to debug few error but the site is fully functional)
 
 ## Features
 
