@@ -5,6 +5,7 @@ import { connect } from "mongoose";
 import { config } from "dotenv";
 
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 //import helmet from "helmet";
 
@@ -20,6 +21,13 @@ config();
 const app = express();
 
 //app.use(helmet());
+
+const FRONTEND_URL = "https://personal-task-manager-dtaj.onrender.com";
+
+app.use(cors({
+  origin: FRONTEND_URL, // allow requests only from your frontend
+  credentials: true,     // allow cookies or auth headers if needed
+}));
 
 app.use(json());
 
