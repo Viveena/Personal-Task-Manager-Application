@@ -46,7 +46,7 @@ Create a `.env` file in the `backend/` directory:
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=1h
+JWT_EXPIRES_IN=7d
 ```
 
 ### Installation
