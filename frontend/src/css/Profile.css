@@ -1,0 +1,185 @@
+/* General Page Styling */
+.profile-page {
+  min-height: 100vh;
+  padding: 40px;
+  background-color: #f3f4f6;
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+.profile-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+/* Container holding both cards */
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Individual Card */
+.profile-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 360px;
+}
+
+.profile-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #374151;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #4b5563;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Password card button style */
+.profile-card:nth-child(2) button {
+  background-color: #10b981;
+}
+
+.profile-card:nth-child(2) button:hover {
+  background-color: #059669;
+}
+
+/* Message for not logged in users */
+.message {
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+  margin-top: 100px;
+}
+
+/* Account Statistics Card Styling */
+.account-stats-card {
+  width: 360px; /* Ensure equal width with other cards */
+  padding: 32px;
+}
+
+.account-stats-card h2 {
+  margin-bottom: 24px;
+}
+
+.account-stats-card .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 16px;
+  margin-top: 24px; /* Space from title */
+}
+
+.account-stats-card .stat-item {
+  background-color: #f9fafb;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.account-stats-card .stat-item h3 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3b82f6; /* Blue color for numbers */
+  margin-bottom: 4px;
+}
+
+.account-stats-card .stat-item p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Dark Mode Adaptations */
+.dark-mode .profile-page .account-stats-card {
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-color: var(--border-color);
+}
+
+.dark-mode .account-stats-card h2,
+.dark-mode .account-stats-card .stat-item p {
+  color: var(--text-color);
+}
+
+.dark-mode .account-stats-card .stat-item {
+  background-color: #2d3748; /* Darker background for stat items */
+  border-color: #4a5568;
+  box-shadow: none;
+}
+
+.dark-mode .account-stats-card .stat-item h3 {
+  color: #63b3ed; /* Lighter blue for numbers in dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-card, .account-stats-card {
+    width: 90%; /* Make cards take more width on small screens */
+    max-width: 400px; /* Max width to keep them readable */
+  }
+
+  .account-stats-card .stats-grid {
+    grid-template-columns: 1fr; /* Stack stats vertically on small screens */
+  }
+}

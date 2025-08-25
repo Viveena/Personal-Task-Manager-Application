@@ -10,15 +10,22 @@ A full-stack Task Manager application built with the MERN stack (MongoDB, Expres
 - User registration and authentication (JWT + HTTP-only cookies)
 - Secure login/logout
 - Create, read, update, and delete tasks
+- Set and display task priority (Low, Medium, High)
+- Add and display task due dates
+- Search tasks by title, description, priority, or due date
+- Edit user profile (username and email)
+- Change user password
+- View account statistics (total, completed, pending tasks)
+- Dark and Light mode theme switching
 - User-specific task lists
-- Responsive, clean React frontend
+- Responsive, clean React frontend with a dashboard-like profile page
 - Protected routes for authenticated users
 
 ## Tech Stack
 
 - **Frontend:** React, TypeScript, Vite, React Router, React Toastify
 - **Backend:** Node.js, Express, MongoDB, Mongoose, JWT, bcryptjs
-- **Styling:** CSS Modules
+- **Styling:** Tailwind CSS, Custom CSS
 
 ## Getting Started
 
@@ -27,6 +34,9 @@ A full-stack Task Manager application built with the MERN stack (MongoDB, Expres
 - Node.js (v16+ recommended)
 - npm
 - MongoDB database (local or Atlas)
+
+**Important Note for MongoDB Atlas Users:**
+If you are using MongoDB Atlas, ensure your current IP address is added to the IP whitelist in your Atlas project's Network Access settings. Failure to do so will result in connection errors. For development, you can temporarily add `0.0.0.0/0` (allow access from anywhere) but exercise caution in production environments.
 
 ### Environment Variables
 
@@ -87,9 +97,12 @@ npm run dev
 - `POST /api/auth/login` - Login user
 - `GET /api/auth/logout` - Logout user
 - `GET /api/auth/profile` - Get current user profile (protected)
+- `PUT /api/auth/profile` - Update current user profile (protected)
+- `PUT /api/auth/change-password` - Change current user's password (protected)
+- `GET /api/auth/stats` - Get account statistics for the logged-in user (protected)
 - `GET /api/tasks` - Get all tasks for logged-in user (protected)
 - `POST /api/tasks` - Create a new task (protected)
-- `PUT /api/tasks/:id` - Update a task (protected)
+- `PUT /api/tasks/:id` - Update a task (protected, includes title, description, priority, due date, and completion status)
 - `DELETE /api/tasks/:id` - Delete a task (protected)
 
 ### Folder Structure

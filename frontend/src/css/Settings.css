@@ -1,0 +1,90 @@
+.settings-container {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.settings-card {
+  max-width: 400px;
+  width: 100%;
+  background-color: var(--card-bg);
+  padding: 3rem;
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.settings-card h2 {
+  font-size: 2.25rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.settings-card p {
+  font-size: 1.25rem; /* text-xl */
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.settings-card .font-semibold {
+  font-weight: 600;
+}
+
+.settings-card .capitalize {
+  text-transform: capitalize;
+}
+
+.settings-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 700; /* font-bold */
+  padding: 1rem 2rem; /* py-4 px-8 */
+  border-radius: 0.75rem; /* rounded-xl */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  font-size: 1rem;
+}
+
+.settings-button:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.settings-button:active {
+  transform: translateY(0);
+}
+
+/* Dark mode specific styles */
+.dark-mode .settings-card h2,
+.dark-mode .settings-card p,
+.dark-mode .settings-button {
+  color: var(--text-color);
+}
+
+.dark-mode .settings-button {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .settings-button:hover {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+  

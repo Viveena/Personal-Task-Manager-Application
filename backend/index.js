@@ -25,10 +25,14 @@ app.use(json());
 
 app.use(cookieParser());
 
+console.log('MONGO_URI:', process.env.MONGO_URI); // Add this line for debugging
 connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected!"))
 
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .catch((err) => {
+    console.error("MongoDB connection error:", err); // Enhanced error logging
+    process.exit(1); // Exit process on connection failure
+  });
 
 app.use("/api/auth", authRoutes);
 

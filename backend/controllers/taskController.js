@@ -30,10 +30,12 @@ export async function updateTask(req, res) {
     if (task.user.toString() !== req.user._id.toString())
       return res.status(401).json({ message: "Not authorized" });
 
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    // Update task fields if provided in req.body
+    task.title = req.body.title || task.title;
+    task.description = req.body.description || task.description;
+    task.completed = typeof req.body.completed === 'boolean' ? req.body.completed : task.completed;
+
+    const updatedTask = await task.save();
 
     res.status(200).json(updatedTask);
   } catch (error) {

@@ -101,7 +101,11 @@
 
 .task-form-grid {
   display: grid;
-  grid-template-columns: 2fr 3fr auto;
+  grid-template-columns: repeat(2, 1fr) auto; /* Two columns for fields, auto for button */
+  grid-template-rows: auto auto; /* Two rows */
+  grid-template-areas:
+    "title description button"
+    "priority dueDate button";
   gap: 1.5rem;
   align-items: end;
 }
@@ -154,11 +158,38 @@
   box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
 }
 
+.task-form button.add-task-button {
+  grid-area: button;
+  justify-self: end;
+  height: fit-content;
+}
+
 .tasks-section h3 {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: #1e293b;
+}
+
+.search-bar-container {
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  font-size: 1rem;
+  color: #22223b;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  outline: none;
 }
 
 .task-list {
@@ -299,6 +330,138 @@
   margin: 0 auto 1rem;
 }
 
+.form-field select,
+.form-field input[type="date"] {
+  padding: 1rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  font-size: 1rem;
+  color: #22223b;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+}
+
+.form-field select:focus,
+.form-field input[type="date"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+.task-title-priority {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-priority {
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+}
+
+.priority-low {
+  background-color: #3b82f6; /* Blue */
+}
+
+.priority-medium {
+  background-color: #f59e0b; /* Amber */
+}
+
+.priority-high {
+  background-color: #ef4444; /* Red */
+}
+
+.task-due-date {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.edit-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.edit-task-form input,
+.edit-task-form textarea,
+.edit-task-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.edit-task-form input:focus,
+.edit-task-form textarea:focus,
+.edit-task-form select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+/* Dark mode adaptations for new elements */
+.dark .priority-select,
+.dark .due-date-input,
+.dark .edit-task-form input,
+.dark .edit-task-form textarea,
+.dark .edit-task-form select {
+  background-color: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--text-color);
+}
+
+.dark .task-title-priority .task-title,
+.dark .task-description,
+.dark .task-due-date {
+  color: var(--text-color);
+}
+
+.dark .task-item.completed .task-title,
+.dark .task-item.completed .task-description,
+.dark .task-item.completed .task-due-date {
+  color: #94a3b8;
+}
+
+.dark .task-item {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.dark .task-item.completed {
+  background: #2d3748;
+}
+
+.form-field select.priority-select {
+  /* Match input field styling */
+  appearance: none; /* Remove default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23667eea%22%20d%3D%22M287%2C114.7L159.9%2C25.3c-5.3-5.3-13.8-5.3-19.1%2C0L5.3%2C114.7c-5.3%2C5.3-5.3%2C13.8%2C0%2C19.1l15.3%2C15.3c5.3%2C5.3%2C13.8%2C5.3%2C19.1%2C0l94-94.4l94%2C94.4c5.3%2C5.3%2C13.8%2C5.3%2C19.1%2C0l15.3-15.3C292.3%2C128.5%2C292.3%2C120%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.8em;
+  padding-right: 2.5rem; /* Space for the custom arrow */
+}
+
+.dark .form-field select.priority-select {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e2e8f0%22%20d%3D%22M287%2C114.7L159.9%2C25.3c-5.3-5.3-13.8-5.3-19.1%2C0L5.3%2C114.7c-5.3%2C5.3-5.3%2C13.8%2C0%2C19.1l15.3%2C15.3c5.3%2C5.3%2C13.8%2C5.3%2C19.1%2C0l94-94.4l94%2C94.4c5.3%2C5.3%2C13.8%2C5.3%2C19.1%2C0l15.3-15.3C292.3%2C128.5%2C292.3%2C120%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E'); /* Dark mode custom arrow */
+}
+
+.form-field.task-title-field { grid-area: title; }
+.form-field.description-field { grid-area: description; }
+.form-field.priority-field { grid-area: priority; }
+.form-field.due-date-field { grid-area: dueDate; }
+.task-form button[type="submit"] { grid-area: button; justify-self: end; }
+
 /* Tablet and Mobile Responsive */
 @media (max-width: 1024px) {
   .dashboard-container {
@@ -317,8 +480,17 @@
   }
   
   .task-form-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+    grid-template-areas: none;
     gap: 1rem;
+  }
+
+  .form-field.task-title-field, 
+  .form-field.description-field, 
+  .form-field.priority-field, 
+  .form-field.due-date-field,
+  .task-form button[type="submit"] {
+    grid-area: auto;
   }
   
   .task-item {

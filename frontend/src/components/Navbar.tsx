@@ -12,11 +12,11 @@ const Navbar = (): JSX.Element => {
       <div className="nav-content">
         {user ? (
           <div className="nav-menu authenticated">
-            <div className="user-info">
-              <span>Welcome, {user.username}</span>
-            </div>
             <div className="nav-links">
+              
               <Link to="/dashboard">Dashboard</Link>
+              <Link to="/profile">Profile</Link>
+              <Link to="/settings">Settings</Link>
               <button onClick={logout}>Logout</button>
             </div>
           </div>
