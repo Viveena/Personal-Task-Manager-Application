@@ -17,8 +17,6 @@ export interface AuthContextType {
   changePassword: (oldPassword: string, newPassword: string) => Promise<boolean>;
 }
 
-const API_URL = "https://personal-task-manager-application.onrender.com";
-
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
@@ -33,6 +31,9 @@ interface Props {
   children: ReactNode;
 }
 
+// **Set your deployed backend URL here**
+const API_URL = "https://personal-task-manager-application.onrender.com";
+
 export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
         return;
       }
       try {
-        const res = await axios.get<User>('/api/auth/profile', {
+        const res = await axios.get<User>(`${API_URL}/api/auth/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
@@ -58,11 +59,10 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
     };
     loadUser();
   }, []);
-  
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      const res = await axios.post<User>('/api/auth/login', { email, password });
+      const res = await axios.post<User>(`${API_URL}/api/auth/login`, { email, password });
       setUser(res.data);
       return true;
     } catch (err: any) {
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
 
   const register = async (username: string, email: string, password: string): Promise<boolean> => {
     try {
-      const res = await axios.post<User>('/api/auth/register', { username, email, password });
+      const res = await axios.post<User>(`${API_URL}/api/auth/register`, { username, email, password });
       setUser(res.data);
       return true;
     } catch (err: any) {
@@ -84,19 +84,17 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
 
   const logout = async (): Promise<void> => {
     try {
-      await axios.get('/api/auth/logout');
+      await axios.get(`${API_URL}/api/auth/logout`);
     } catch (err: any) {
-      // Log logout errors but don't throw
       console.error('Logout error:', err.response?.data?.message || err.message);
     } finally {
-      // Always clear user state regardless of logout success
       setUser(null);
     }
   };
 
   const updateProfile = async (username: string, email: string): Promise<boolean> => {
     try {
-      const res = await axios.put<User>("/api/auth/profile", { username, email });
+      const res = await axios.put<User>(`${API_URL}/api/auth/profile`, { username, email });
       setUser(res.data);
       return true;
     } catch (err: any) {
@@ -107,7 +105,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
 
   const changePassword = async (oldPassword: string, newPassword: string): Promise<boolean> => {
     try {
-      await axios.put("/api/auth/change-password", { oldPassword, newPassword });
+      await axios.put(`${API_URL}/api/auth/change-password`, { oldPassword, newPassword });
       return true;
     } catch (err: any) {
       console.error('Password change error:', err.response?.data?.message || err.message);
@@ -122,7 +120,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   );
 };
 
-// Custom hook to use the AuthContext
+// Custom hook
 export const useAuth = () => {
   const context = React.useContext(AuthContext);
   if (context === undefined) {
