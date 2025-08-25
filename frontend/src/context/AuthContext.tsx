@@ -17,6 +17,8 @@ export interface AuthContextType {
   changePassword: (oldPassword: string, newPassword: string) => Promise<boolean>;
 }
 
+const API_URL = "https://personal-task-manager-application.onrender.com";
+
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
