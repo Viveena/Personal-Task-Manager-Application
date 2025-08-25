@@ -1,6 +1,6 @@
 # MERN Personal Task Manager
 
-I built this fully functional Personal task manager application entirely from scratch within a very tight timeline of two days. It was a challenging project, but I successfully completed it, ensuring that all core features and assignment requirements were met.
+Built this fully functional Personal task manager application within a very tight timeline of two days. It was a challenging project, but I successfully completed it, ensuring that all core features and assignment requirements were met.
 
 <img width="1200" height="840" alt="Vite-React-TS-07-19-2025_05_44_AM" src="https://github.com/user-attachments/assets/c48af11b-edec-4e4e-bea5-75ea821509de" />
 
