@@ -1,4 +1,4 @@
-# MERN Task Manager
+# MERN Personal Task Manager
 
 A full-stack Task Manager application built with the MERN stack (MongoDB, Express, React, Node.js). Users can register, log in, and manage their personal tasks with a modern, responsive UI.
 
